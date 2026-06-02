@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>전남축제여행 · 아이와 함께 떠나는 전남 축제길</title>
+
+  <!-- Leaflet -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+    defer
+  ></script>
+
+  <!-- Fonts: Pretendard (body) + Noto Sans KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    as="style"
+    crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+  />
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 64 64" width="100%" height="100%">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#bfe3f2"/>
+            <stop offset="100%" stop-color="#eaf6ed"/>
+          </linearGradient>
+        </defs>
+        <circle cx="32" cy="32" r="31" fill="url(#sky)" stroke="#2f6b4f" stroke-width="2"/>
+        <!-- 해/노을 -->
+        <circle cx="42" cy="24" r="7" fill="#f4a259"/>
+        <!-- 산 -->
+        <path d="M8 44 L22 26 L33 40 L43 28 L56 44 Z" fill="#3a7d5d"/>
+        <path d="M8 44 L18 32 L28 44 Z" fill="#2f6b4f"/>
+        <!-- 한옥 지붕 -->
+        <path d="M20 40 q12 -8 24 0 l-3 3 q-9 -5 -18 0 Z" fill="#7a4a32"/>
+        <!-- 물결 -->
+        <path d="M8 50 q6 -4 12 0 t12 0 t12 0 t12 0" fill="none" stroke="#5bb0d6" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M8 55 q6 -4 12 0 t12 0 t12 0 t12 0" fill="none" stroke="#9ad0e8" stroke-width="2.2" stroke-linecap="round"/>
+        <!-- 백로 -->
+        <path d="M34 18 q3 -3 6 -1 q-2 1 -3 3 q3 0 5 2 q-4 1 -8 0 Z" fill="#ffffff" stroke="#2f6b4f" stroke-width="0.6"/>
+      </svg>
+    </span>
+    <div class="brand-text">
+      <h1>전남축제여행</h1>
+      <p>아이와 함께 떠나는 전남 축제길</p>
+    </div>
+  </div>
+  <nav class="topnav">
+    <button data-tab="favorites" class="nav-link" id="fav-btn"><span class="ic">♥</span> 찜한 축제</button>
+    <button data-tab="ranking" class="nav-link"><span class="ic">▦</span> 사진 업로드</button>
+    <button class="nav-link" id="request-btn"><span class="ic">+</span> 축제 추가 요청</button>
+    <button class="nav-link" id="admin-btn" hidden><span class="ic">★</span> 관리자 패널</button>
+    <button id="auth-btn" class="nav-login">로그인</button>
+  </nav>
+</header>
+
+<main class="layout">
+  <!-- 지도 -->
+  <section class="map-wrap">
+    <div id="map"></div>
+    <div id="hover-tip" class="hover-tip" hidden></div>
+
+    <!-- 좌측 카드 오버레이 -->
+    <div class="map-cards">
+      <button class="card range-card" id="range-card">
+        <span>현재 지도 범위 내 축제</span>
+        <span class="range-add">+</span>
+      </button>
+
+      <div class="card legend-card">
+        <h4>축제 상태</h4>
+        <ul>
+          <li><span class="ld ld-on"></span>진행 중</li>
+          <li><span class="ld ld-soon"></span>예정</li>
+          <li><span class="ld ld-end"></span>종료</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 사이드바 -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-empty" id="sidebar-empty">
+      <div class="empty-illu" aria-hidden="true">🎏</div>
+      <h2>전남의 사계절 축제, 지금 만나보세요</h2>
+      <p>지도에서 시·군을 선택하거나 핀을 누르면<br/>축제 정보와 주변 정보를 볼 수 있어요.</p>
+      <ul class="hint-list">
+        <li>지역 위에 마우스를 올리면 살짝 떠올라요</li>
+        <li>핀을 클릭하면 상세 정보가 열려요</li>
+        <li>방문 사진을 올리고 추천을 받아보세요</li>
+      </ul>
+      <button class="btn-primary theme-cta" id="theme-cta">테마별 축제 보기</button>
+    </div>
+
+    <div class="sidebar-content" id="sidebar-content" hidden>
+      <button class="sidebar-back" id="sidebar-back">←  닫기</button>
+
+      <div class="detail-thumb-wrap">
+        <img class="festival-thumb" id="f-thumb" alt="" />
+        <span class="status-badge" id="f-status">진행 중</span>
+      </div>
+
+      <header class="festival-header">
+        <span class="festival-region" id="f-region"></span>
+        <h2 id="f-name"></h2>
+        <p class="festival-period" id="f-period"></p>
+      </header>
+
+      <p class="festival-desc" id="f-desc"></p>
+
+      <div class="info-two-col">
+        <section class="info-card">
+          <h3><span class="info-ic">📍</span>장소</h3>
+          <p id="f-venue"></p>
+        </section>
+        <section class="info-card">
+          <h3><span class="info-ic">🅿</span>주차</h3>
+          <p id="f-parking"></p>
+        </section>
+      </div>
+
+      <section class="info-block">
+        <h3>행사 일정</h3>
+        <ol id="f-schedule" class="schedule-list"></ol>
+      </section>
+
+      <section class="info-block">
+        <h3>주변 정보</h3>
+        <div class="nearby-grid" id="nearby-grid"></div>
+      </section>
+
+      <section class="info-block">
+        <h3>방문객 사진</h3>
+        <div class="photo-grid" id="photo-grid">
+          <p class="muted">아직 업로드된 사진이 없어요.</p>
+        </div>
+      </section>
+
+      <div class="detail-actions">
+        <button class="btn-primary" id="upload-btn"><span class="ic">📷</span> 방문 사진 올리기</button>
+        <a class="btn-outline" id="f-official" target="_blank" rel="noopener">공식 홈페이지 바로가기 →</a>
+        <button class="btn-danger" id="admin-delete-festival" hidden>🗑 이 축제 삭제 (관리자)</button>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<!-- 하단 태그 바 -->
+<footer class="tagbar">
+  <span class="tagbar-label">인기 테마 둘러보기</span>
+  <div class="tag-pills">
+    <button class="pill">#꽃축제</button>
+    <button class="pill">#자연·생태</button>
+    <button class="pill">#체험</button>
+    <button class="pill">#먹거리</button>
+    <button class="pill">#가족여행</button>
+  </div>
+</footer>
+
+<!-- 사진 업로드 모달 -->
+<div class="modal" id="upload-modal" hidden>
+  <div class="modal-card">
+    <h3>축제 사진 업로드</h3>
+    <p class="muted">로그인이 필요해요. (jpeg/png/webp · 5MB 이내)</p>
+    <input type="file" id="upload-file" accept="image/jpeg,image/png,image/webp" />
+    <textarea id="upload-caption" placeholder="짧은 한 줄 (선택)" maxlength="200"></textarea>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="upload-cancel">취소</button>
+      <button class="btn-primary" id="upload-submit">올리기</button>
+    </div>
+  </div>
+</div>
+
+<!-- 로그인/회원가입 모달 -->
+<div class="modal" id="auth-modal" hidden>
+  <div class="modal-card">
+    <h3 id="auth-title">로그인</h3>
+    <input type="email"    id="auth-email"    placeholder="이메일" />
+    <input type="password" id="auth-password" placeholder="비밀번호 (8자 이상)" />
+    <input type="text"     id="auth-nickname" placeholder="닉네임" hidden />
+    <div class="modal-actions">
+      <button class="btn-ghost" id="auth-toggle">회원가입으로</button>
+      <button class="btn-primary" id="auth-submit">로그인</button>
+    </div>
+  </div>
+</div>
+
+<!-- 축제 추가 요청 모달 -->
+<div class="modal" id="request-modal" hidden>
+  <div class="modal-card request-card">
+    <h3>축제 추가 요청</h3>
+    <p class="muted">관리자 승인 후 지도에 표시됩니다.</p>
+    <label class="req-label">축제명 *
+      <input type="text" id="req-name" placeholder="예: 보성다향대축제" />
+    </label>
+    <label class="req-label">지역(시·군) *
+      <select id="req-region"><option value="">선택</option></select>
+    </label>
+    <div class="req-grid2">
+      <label class="req-label">시작일<input type="date" id="req-start" /></label>
+      <label class="req-label">종료일<input type="date" id="req-end" /></label>
+    </div>
+    <label class="req-label">장소<input type="text" id="req-venue" placeholder="예: 보성차밭 일대" /></label>
+    <label class="req-label">주차 안내<input type="text" id="req-parking" placeholder="주차장 위치/규모" /></label>
+    <div class="req-grid2">
+      <label class="req-label">위도(lat)<input type="number" step="0.000001" id="req-lat" placeholder="34.7415" /></label>
+      <label class="req-label">경도(lng)<input type="number" step="0.000001" id="req-lng" placeholder="127.0795" /></label>
+    </div>
+    <button type="button" class="req-link" id="req-coord-help">지도에서 직접 위치 찍기</button>
+    <label class="req-label">행사 일정<textarea id="req-schedule" placeholder="예) 1일차 개막식 / 2일차 가요무대"></textarea></label>
+    <label class="req-label">공식 홈페이지<input type="url" id="req-official" placeholder="https://" /></label>
+    <label class="req-label">설명<textarea id="req-desc" placeholder="축제 소개"></textarea></label>
+    <label class="req-label">대표 사진<input type="file" id="req-thumb" accept="image/jpeg,image/png,image/webp" /></label>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="req-cancel">취소</button>
+      <button class="btn-primary" id="req-submit">요청 보내기</button>
+    </div>
+  </div>
+</div>
+
+<!-- 관리자 패널 모달 -->
+<div class="modal" id="admin-modal" hidden>
+  <div class="modal-card admin-card">
+    <h3>관리자 패널 — 대기 중인 축제 요청</h3>
+    <div id="admin-list" class="admin-list"><p class="muted">불러오는 중...</p></div>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="admin-close">닫기</button>
+      <button class="btn-primary" id="admin-add-direct">+ 직접 축제 추가</button>
+    </div>
+  </div>
+</div>
+
+<!-- App scripts -->
+<script src="/js/api.js"      defer></script>
+<script src="/js/sidebar.js"  defer></script>
+<script src="/js/upload.js"   defer></script>
+<script src="/js/map.js"      defer></script>
+<script src="/js/admin.js"    defer></script>
+
+</body>
+</html>

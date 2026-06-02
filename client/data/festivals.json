@@ -1,0 +1,173 @@
+[
+  {
+    "id": "yeosu-turtleship",
+    "name": "여수거북선축제",
+    "region": "여수시",
+    "regionCode": "46130",
+    "period": { "start": "2026-05-02", "end": "2026-05-05" },
+    "venue": "이순신광장 일대",
+    "coords": { "lat": 34.7404, "lng": 127.7406 },
+    "parking": "이순신광장 공영주차장 (200대), 종포해양공원 주차장",
+    "schedule": [
+      { "day": "1일차", "events": ["개막식 18:00", "축하공연 19:30", "야간 불꽃놀이 21:00"] },
+      { "day": "2일차", "events": ["거북선 퍼레이드 14:00", "전통 무예 시연 16:00"] },
+      { "day": "3일차", "events": ["체험 부스 11:00~17:00", "폐막 콘서트 19:00"] }
+    ],
+    "thumbnail": "/images/yeosu-turtle.jpg",
+    "officialUrl": "https://www.yeosu.go.kr/festival",
+    "description": "이순신 장군의 호국 정신을 기리는 여수의 대표 봄 축제로, 거북선 퍼레이드와 다양한 체험 프로그램이 진행됩니다."
+  },
+  {
+    "id": "yeosu-fireworks",
+    "name": "여수밤바다 불꽃축제",
+    "region": "여수시",
+    "regionCode": "46130",
+    "period": { "start": "2026-10-10", "end": "2026-10-11" },
+    "venue": "여수엑스포해양공원",
+    "coords": { "lat": 34.7503, "lng": 127.7472 },
+    "parking": "엑스포 주차장 (1,500대)",
+    "schedule": [
+      { "day": "1일차", "events": ["프리쇼 19:00", "메인 불꽃쇼 20:00"] },
+      { "day": "2일차", "events": ["버스킹 공연 16:00", "피날레 불꽃 21:00"] }
+    ],
+    "thumbnail": "/images/yeosu-fireworks.jpg",
+    "officialUrl": "https://www.yeosu.go.kr",
+    "description": "여수 밤바다를 배경으로 펼쳐지는 대규모 멀티미디어 불꽃 쇼."
+  },
+  {
+    "id": "damyang-bamboo",
+    "name": "담양대나무축제",
+    "region": "담양군",
+    "regionCode": "46710",
+    "period": { "start": "2026-05-01", "end": "2026-05-06" },
+    "venue": "죽녹원 및 영산강 둔치",
+    "coords": { "lat": 35.3214, "lng": 126.9885 },
+    "parking": "죽녹원 공영주차장",
+    "schedule": [
+      { "day": "상시", "events": ["대나무 공예 체험", "죽순요리 시식"] },
+      { "day": "주말", "events": ["대나무 음악회 19:00", "전통 놀이 한마당"] }
+    ],
+    "thumbnail": "/images/damyang-bamboo.jpg",
+    "officialUrl": "https://bamboofestival.kr",
+    "description": "대나무 고장 담양에서 펼쳐지는 친환경 생태 축제. 죽녹원 산책과 함께 다양한 체험이 가능합니다."
+  },
+  {
+    "id": "hampyeong-butterfly",
+    "name": "함평나비대축제",
+    "region": "함평군",
+    "regionCode": "46870",
+    "period": { "start": "2026-04-25", "end": "2026-05-06" },
+    "venue": "함평엑스포공원",
+    "coords": { "lat": 35.0664, "lng": 126.5163 },
+    "parking": "엑스포공원 주차장 (800대)",
+    "schedule": [
+      { "day": "상시", "events": ["나비 생태관 관람", "꽃밭 포토존"] },
+      { "day": "주말", "events": ["나비 방사 행사 14:00", "어린이 곤충 교실"] }
+    ],
+    "thumbnail": "/images/hampyeong-butterfly.jpg",
+    "officialUrl": "https://www.hampyeong.go.kr",
+    "description": "수만 마리 나비가 어우러지는 자연 생태 축제. 가족 단위 관광객에게 인기."
+  },
+  {
+    "id": "boseong-tea",
+    "name": "보성다향대축제",
+    "region": "보성군",
+    "regionCode": "46780",
+    "period": { "start": "2026-05-08", "end": "2026-05-12" },
+    "venue": "한국차문화공원",
+    "coords": { "lat": 34.7415, "lng": 127.0795 },
+    "parking": "차문화공원 주차장",
+    "schedule": [
+      { "day": "상시", "events": ["찻잎 따기 체험", "녹차 시음"] },
+      { "day": "특별", "events": ["다도 시연 14:00", "녹차 비빔밥 시식"] }
+    ],
+    "thumbnail": "/images/boseong-tea.jpg",
+    "officialUrl": "https://dahyang.boseong.go.kr",
+    "description": "초록빛 차밭 풍경 속에서 즐기는 차 문화 축제. 보성의 녹차밭은 한국의 대표 사진 명소입니다."
+  },
+  {
+    "id": "jindo-mysterious-sea",
+    "name": "진도신비의바닷길축제",
+    "region": "진도군",
+    "regionCode": "46900",
+    "period": { "start": "2026-04-17", "end": "2026-04-19" },
+    "venue": "고군면 회동리 ~ 의신면 모도리",
+    "coords": { "lat": 34.4083, "lng": 126.3083 },
+    "parking": "회동리 주차장",
+    "schedule": [
+      { "day": "1일차", "events": ["바닷길 열림 행사 17:00", "씻김굿 공연 19:00"] },
+      { "day": "2일차", "events": ["바닷길 걷기 체험 (간조 시간 기준)"] }
+    ],
+    "thumbnail": "/images/jindo-sea.jpg",
+    "officialUrl": "https://tour.jindo.go.kr",
+    "description": "1년에 몇 차례 바다가 갈라지는 신비한 자연 현상을 직접 체험할 수 있는 세계적 축제."
+  },
+  {
+    "id": "gangjin-celadon",
+    "name": "강진청자축제",
+    "region": "강진군",
+    "regionCode": "46810",
+    "period": { "start": "2026-07-25", "end": "2026-08-02" },
+    "venue": "고려청자박물관 일원",
+    "coords": { "lat": 34.5613, "lng": 126.7395 },
+    "parking": "박물관 주차장",
+    "schedule": [
+      { "day": "상시", "events": ["청자 빚기 체험", "전통 가마 시연"] },
+      { "day": "야간", "events": ["청자 야경 투어 20:00"] }
+    ],
+    "thumbnail": "/images/gangjin-celadon.jpg",
+    "officialUrl": "https://www.gangjin.go.kr",
+    "description": "고려청자의 본고장 강진에서 천 년 도자 문화를 직접 만나는 축제."
+  },
+  {
+    "id": "gwangyang-plum",
+    "name": "광양매화축제",
+    "region": "광양시",
+    "regionCode": "46230",
+    "period": { "start": "2026-03-13", "end": "2026-03-22" },
+    "venue": "다압면 매화마을",
+    "coords": { "lat": 35.0707, "lng": 127.7361 },
+    "parking": "매화마을 임시주차장 (셔틀 운행)",
+    "schedule": [
+      { "day": "상시", "events": ["매화꽃길 산책", "매실 식품 판매장"] },
+      { "day": "주말", "events": ["국악 공연 14:00", "매화 사진 콘테스트"] }
+    ],
+    "thumbnail": "/images/gwangyang-plum.jpg",
+    "officialUrl": "https://www.gwangyang.go.kr",
+    "description": "전국에서 가장 빠르게 봄을 알리는 광양 다압의 매화꽃 잔치."
+  },
+  {
+    "id": "suncheon-reed",
+    "name": "순천만갈대축제",
+    "region": "순천시",
+    "regionCode": "46150",
+    "period": { "start": "2026-10-23", "end": "2026-11-08" },
+    "venue": "순천만습지",
+    "coords": { "lat": 34.8835, "lng": 127.5076 },
+    "parking": "순천만습지 주차장 (대형/소형 분리)",
+    "schedule": [
+      { "day": "상시", "events": ["갈대길 트레킹", "탐조 투어"] },
+      { "day": "주말", "events": ["갈대 음악회 16:00", "철새 해설 프로그램"] }
+    ],
+    "thumbnail": "/images/suncheon-reed.jpg",
+    "officialUrl": "https://scbay.suncheon.go.kr",
+    "description": "은빛 갈대 물결과 흑두루미가 어우러지는 세계적 람사르 습지 축제."
+  },
+  {
+    "id": "yeonggwang-spider-lily",
+    "name": "영광불갑산상사화축제",
+    "region": "영광군",
+    "regionCode": "46870",
+    "period": { "start": "2026-09-19", "end": "2026-09-27" },
+    "venue": "불갑사 일원",
+    "coords": { "lat": 35.2208, "lng": 126.5847 },
+    "parking": "불갑사 공영주차장",
+    "schedule": [
+      { "day": "상시", "events": ["꽃길 산책", "사찰 음식 체험"] },
+      { "day": "주말", "events": ["전통 음악 공연 15:00"] }
+    ],
+    "thumbnail": "/images/yeonggwang-lily.jpg",
+    "officialUrl": "https://www.yeonggwang.go.kr",
+    "description": "붉은 상사화가 산자락을 물들이는 가을의 절경. 천년 고찰 불갑사와 함께 즐깁니다."
+  }
+]
