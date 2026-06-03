@@ -96,6 +96,11 @@ router.post('/:id/approve', requireAdmin, async (req, res) => {
     const r = rows[0];
     const newId = 'req_' + crypto.randomBytes(6).toString('hex');
 
+    // schedule_json은 typeCast로 객체로 디코드됨. INSERT에는 JSON 문자열로 다시 직렬화.
+    const scheduleStr = r.schedule_json == null
+      ? null
+      : (typeof r.schedule_json === 'string' ? r.schedule_json : JSON.stringify(r.schedule_json));
+
     await conn.query(
       `INSERT INTO festivals
         (id, name, region, start_date, end_date, venue, lat, lng, parking,
@@ -103,7 +108,7 @@ router.post('/:id/approve', requireAdmin, async (req, res) => {
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         newId, r.name, r.region, r.start_date, r.end_date, r.venue,
-        r.lat, r.lng, r.parking, r.schedule_json, r.thumbnail,
+        r.lat, r.lng, r.parking, scheduleStr, r.thumbnail,
         r.official_url, r.description
       ]
     );
